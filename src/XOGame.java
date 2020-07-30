@@ -1,3 +1,5 @@
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -114,18 +116,17 @@ import java.util.Scanner;
 
         public static boolean checkWin(char c) {
 
-            if (map[0][0] == c && map[0][1] == c && map[0][2] == c) {return true; }
-            if (map[1][0] == c && map[1][1] == c && map[1][2] == c) {return true; }
-            if (map[2][0] == c && map[2][1] == c && map[2][2] == c) {return true; }
-
-            if (map[0][0] == c && map[1][0] == c && map[2][0] == c) {return true; }
-            if (map[0][1] == c && map[1][1] == c && map[2][1] == c) {return true; }
-            if (map[0][2] == c && map[1][2] == c && map[2][2] == c) {return true; }
-
-            if (map[0][0] == c && map[1][1] == c && map[2][2] == c) {return true; }
-            if (map[0][2] == c && map[1][1] == c && map[2][0] == c) {return true; }
-
+            for (int i = 0; i < SIZE ; i++) {
+                if ((map[i][0] == map [i][1] && map[i][0] == map [i][2] ||
+                        map [0][i] == map[1][i] && map [0][i] == map[2][i]) && map [i][i] != DOT_EMPTY){
+                    return true;
+                }
+                if ((map[0][0] ==  map[1][1]  && map[0][0] == map[2][2]) ||
+                        (map[0][2] == map [1][1] && map[0][2] == map[2][0])&& map [i][i] != DOT_EMPTY){
+                    return true;
+                }
+            }
             return false;
         }
-
     }
+
